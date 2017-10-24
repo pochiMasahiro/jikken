@@ -168,12 +168,17 @@
             
   <div class="section" id="centos-install">
 <h1>CentOS install<a class="headerlink" href="#centos-install" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>VirtualBoxに作るから、VirtualBoxをダウンロード＆インストール。</p>
+<p>あとは普通にインストールしていく。</p>
 <p>インストールするHDDを選択したりするところの下のボタンにネットワークの設定がある。</p>
 <p>ネットワーク(enp0s3)をONにする。</p>
 <p>10.0.0.0/24のIPが割り当てられるのを確認する。</p>
+<img alt="_images/install1.png" src="_images/install1.png" />
+<img alt="_images/install2.png" src="_images/install2.png" />
 <p>インストールする。</p>
 <p>rootパスワードの設定とアカウントの作成をする。</p>
 <p>アカウント作るとき管理者のところにチェックを忘れずに。</p>
+<img alt="_images/install3.png" src="_images/install3.png" />
 </div>
 <div class="section" id="virtual-box">
 <h1>Virtual Boxの設定<a class="headerlink" href="#virtual-box" title="このヘッドラインへのパーマリンク">¶</a></h1>
@@ -203,7 +208,7 @@
 <span class="n">export</span> <span class="n">https_proxy</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">172.24</span><span class="o">.</span><span class="mf">2.60</span><span class="p">:</span><span class="mi">15080</span>
 </pre></div>
 </div>
-<p>ファイルに書き込むのは面倒だから、環境変数で。yumはsudoの-Eオプションをつけると、環境変数読み込んで良しなにやってくれる。</p>
+<p>色々プロキシ設定をファイルに書き込むのは面倒だから環境変数で。yumはsudoの-Eオプションをつけると、環境変数読み込んで良しなにやってくれる。</p>
 <p>環境変数はlogoutすると、消えてしまう。消えるのが嫌なら.bashrcに追記しておく。</p>
 <p>家でプロキシ無しで、学校ではプロキシ有りでってときは毎回打ち込むのがおすすめ。</p>
 <p>まずアップデート、そしてphp56系を入れる。:</p>
@@ -228,12 +233,12 @@
 <h2>Create a CakePHP Project<a class="headerlink" href="#create-a-cakephp-project" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ここはプロキシがあるとhttpsで必要なファイルが落とせないバグがあるっぽい．．．。</p>
 <p>プロキシの無い環境ならうまくいく。</p>
-<p>テザリングとかでうまいこと頑張ってくれ．．．。とりあえず実行してみる、駄目だったら諦めるか、テザリング、WiMAXとかで．．．。:</p>
+<p>テザリングとかでうまいこと頑張ってくれ．．．。とりあえず実行してみる、駄目だったら諦めるか、テザリング、WiMAXとかで．．．。誰か一人が落として、zipで固めてから配ってもいいと思う。:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">php</span> <span class="n">composer</span><span class="o">.</span><span class="n">phar</span> <span class="n">create</span><span class="o">-</span><span class="n">project</span> <span class="o">--</span><span class="n">prefer</span><span class="o">-</span><span class="n">dist</span> <span class="n">cakephp</span><span class="o">/</span><span class="n">app</span> <span class="n">my_app_name</span>
 </pre></div>
 </div>
 <p>うまくいくと、my_app_nameってディレクトリができてる。最後にpermisssionなんたらって聞かれるからyesしておくとあとで楽。</p>
-<p>Apacheで動かしたいから、DocumentRootに移動する。:</p>
+<p>Apacheで動かしたいから、DocumentRootに移動しておく。:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mv</span> <span class="n">my_app_name</span><span class="o">/</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span>
 </pre></div>
 </div>
@@ -265,7 +270,7 @@ Remove test database and access to it? [Y/n] y
 Reload privilege tables now? [Y/n] y
 </pre></div>
 </div>
-<p>あとで使うユーザーとデータベースをつくる。</p>
+<p>WebAppで使うユーザーとデータベースをつくる。</p>
 <p>以下のコマンドを実行。:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="o">-</span><span class="n">p</span>
 <span class="n">Enter</span> <span class="n">password</span><span class="p">:</span> <span class="n">root</span>
@@ -280,7 +285,7 @@ Reload privilege tables now? [Y/n] y
 </div>
 <div class="section" id="firewall">
 <h2>Firewallの設定<a class="headerlink" href="#firewall" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Firewallでhttp,httpsをぶちあける。
+<p>Firewallのhttp,httpsをぶちあける。
 以下のコマンドを実行してみる。:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="n">zones</span>
 </pre></div>

@@ -1,17 +1,27 @@
 CentOS install
 ===============
 
+VirtualBoxに作るから、VirtualBoxをダウンロード＆インストール。
+
+あとは普通にインストールしていく。
+
 インストールするHDDを選択したりするところの下のボタンにネットワークの設定がある。
 
 ネットワーク(enp0s3)をONにする。
 
 10.0.0.0/24のIPが割り当てられるのを確認する。
+
+.. image:: fig/install1.png
+
+.. image:: fig/install2.png
 	
 インストールする。
 
 rootパスワードの設定とアカウントの作成をする。
 
 アカウント作るとき管理者のところにチェックを忘れずに。
+
+.. image:: fig/install3.png
 
 Virtual Boxの設定
 ===================
@@ -49,7 +59,7 @@ cygwinとか使える人、macの人はターミナル開いて::
 	export http_proxy=http://172.24.2.60:15080
 	export https_proxy=https://172.24.2.60:15080
 
-ファイルに書き込むのは面倒だから、環境変数で。yumはsudoの-Eオプションをつけると、環境変数読み込んで良しなにやってくれる。
+色々プロキシ設定をファイルに書き込むのは面倒だから環境変数で。yumはsudoの-Eオプションをつけると、環境変数読み込んで良しなにやってくれる。
 
 環境変数はlogoutすると、消えてしまう。消えるのが嫌なら.bashrcに追記しておく。
 
@@ -84,13 +94,13 @@ Create a CakePHP Project
 
 プロキシの無い環境ならうまくいく。
 
-テザリングとかでうまいこと頑張ってくれ．．．。とりあえず実行してみる、駄目だったら諦めるか、テザリング、WiMAXとかで．．．。::
+テザリングとかでうまいこと頑張ってくれ．．．。とりあえず実行してみる、駄目だったら諦めるか、テザリング、WiMAXとかで．．．。誰か一人が落として、zipで固めてから配ってもいいと思う。::
 
 	php composer.phar create-project --prefer-dist cakephp/app my_app_name
 
 うまくいくと、my_app_nameってディレクトリができてる。最後にpermisssionなんたらって聞かれるからyesしておくとあとで楽。
 
-Apacheで動かしたいから、DocumentRootに移動する。::
+Apacheで動かしたいから、DocumentRootに移動しておく。::
 
 	sudo mv my_app_name/ /var/www/html/
 
@@ -122,7 +132,7 @@ MariaDBの初期設定をする。以下のコマンドを実行。::
 	Remove test database and access to it? [Y/n] y
 	Reload privilege tables now? [Y/n] y
 
-あとで使うユーザーとデータベースをつくる。
+WebAppで使うユーザーとデータベースをつくる。
 
 以下のコマンドを実行。::
 
@@ -139,7 +149,7 @@ MariaDBの初期設定をする。以下のコマンドを実行。::
 Firewallの設定
 ---------------------------
 
-Firewallでhttp,httpsをぶちあける。
+Firewallのhttp,httpsをぶちあける。
 以下のコマンドを実行してみる。::
 
 	sudo firewall-cmd --get-active-zones
