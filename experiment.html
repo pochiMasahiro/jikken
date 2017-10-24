@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CentOS install &mdash; Install CakePHP for CentOS  ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="検索" href="search.html"/>
+    <link rel="top" title="Install CakePHP for CentOS  ドキュメント" href="index.html"/>
+        <link rel="prev" title="CentOSにCakePHPをインストールする茨の道へようこそ！！" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Install CakePHP for CentOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CentOS install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#virtual-box">Virtual Boxの設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">ポートフォワーディングを設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#centos">CentOS上での作業</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#osphp">OSのアップデート、PHPのインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#composer-install">Composer Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-cakephp-project">Create a CakePHP Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#apache-mariadb">Apache MariaDBのインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewall">Firewallの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#httpd-conf">httpd.confの書き換え</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selinux">SELinuxの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">参考</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Install CakePHP for CentOS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>CentOS install</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/experiment.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="centos-install">
+<h1>CentOS install<a class="headerlink" href="#centos-install" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>インストールするHDDを選択したりするところの下のボタンにネットワークの設定がある。</p>
+<p>ネットワーク(enp0s3)をONにする。</p>
+<p>10.0.0.0/24のIPが割り当てられるのを確認する。</p>
+<p>インストールする。</p>
+<p>rootパスワードの設定とアカウントの作成をする。</p>
+<p>アカウント作るとき管理者のところにチェックを忘れずに。</p>
+</div>
+<div class="section" id="virtual-box">
+<h1>Virtual Boxの設定<a class="headerlink" href="#virtual-box" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>ポートフォワーディングを設定<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>22と80を開ける。
+2222 -&gt;　22
+8888 -&gt; 80
+とか。8080はホストOS上のなんかしらのソフトで抑えられてるかも。</p>
+<img alt="_images/port_forward1.PNG" src="_images/port_forward1.PNG" />
+<img alt="_images/port_forward2.PNG" src="_images/port_forward2.PNG" />
+</div>
+</div>
+<div class="section" id="centos">
+<h1>CentOS上での作業<a class="headerlink" href="#centos" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="osphp">
+<h2>OSのアップデート、PHPのインストール<a class="headerlink" href="#osphp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>適当なターミナルエミュレータから、locahost:2222にsshでアクセス。</p>
+<p>cygwinとか使える人、macの人はターミナル開いて:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="mi">2222</span> <span class="n">username</span><span class="nd">@localhost</span>
+</pre></div>
+</div>
+<p>でアクセス可能。usernameは自分の作ったユーザー名を入れる。</p>
+<p>こっから先はプロキシがあると難しい。プロキシが無い環境が本当は望ましい。そうも言ってられないし、とりあえずプロキシ有りでできるとこまで頑張る。</p>
+<p>とりあえずプロキシ設定。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">172.24</span><span class="o">.</span><span class="mf">2.60</span><span class="p">:</span><span class="mi">15080</span>
+<span class="n">export</span> <span class="n">https_proxy</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">172.24</span><span class="o">.</span><span class="mf">2.60</span><span class="p">:</span><span class="mi">15080</span>
+</pre></div>
+</div>
+<p>ファイルに書き込むのは面倒だから、環境変数で。yumはsudoの-Eオプションをつけると、環境変数読み込んで良しなにやってくれる。</p>
+<p>環境変数はlogoutすると、消えてしまう。消えるのが嫌なら.bashrcに追記しておく。</p>
+<p>家でプロキシ無しで、学校ではプロキシ有りでってときは毎回打ち込むのがおすすめ。</p>
+<p>まずアップデート、そしてphp56系を入れる。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">yum</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">epel</span><span class="o">-</span><span class="n">release</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">rpm</span> <span class="o">-</span><span class="n">Uvh</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">rpms</span><span class="o">.</span><span class="n">famillecollet</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">enterprise</span><span class="o">/</span><span class="n">remi</span><span class="o">-</span><span class="n">release</span><span class="o">-</span><span class="mf">7.</span><span class="n">rpm</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">yum</span> <span class="n">install</span> <span class="o">--</span><span class="n">enablerepo</span><span class="o">=</span><span class="n">remi</span><span class="p">,</span><span class="n">remi</span><span class="o">-</span><span class="n">php56</span> <span class="n">php</span> <span class="n">php</span><span class="o">-</span><span class="n">devel</span> <span class="n">php</span><span class="o">-</span><span class="n">mbstring</span> <span class="n">php</span><span class="o">-</span><span class="n">pdo</span> <span class="n">php</span><span class="o">-</span><span class="n">gd</span> <span class="n">php</span><span class="o">-</span><span class="n">xml</span> <span class="n">php</span><span class="o">-</span><span class="n">mcrypt</span> <span class="n">php</span><span class="o">-</span><span class="n">intl</span> <span class="n">php</span><span class="o">-</span><span class="n">mysqli</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="composer-install">
+<h2>Composer Install<a class="headerlink" href="#composer-install" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>プロキシ環境だと、<a class="reference external" href="https://getcomposer.org/download">https://getcomposer.org/download</a>/に書かれてるのはうまくいかない。途中まではうまくいく。そこで、１行目はphpを使わず、curlを使って落としてくる。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">getcomposer</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">installer</span> <span class="o">&gt;</span> <span class="n">composer</span><span class="o">-</span><span class="n">setup</span><span class="o">.</span><span class="n">php</span>
+</pre></div>
+</div>
+<p>2行目はインストーラが正しいかチェックしてるだけだから、不要。気になればやる。</p>
+<p>3行目はそのまま実行。(php composer-setup.php)</p>
+<p>4行目はインストーラを消す。やらなくても大丈夫。</p>
+</div>
+<div class="section" id="create-a-cakephp-project">
+<h2>Create a CakePHP Project<a class="headerlink" href="#create-a-cakephp-project" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ここはプロキシがあるとhttpsで必要なファイルが落とせないバグがあるっぽい．．．。</p>
+<p>プロキシの無い環境ならうまくいく。</p>
+<p>テザリングとかでうまいこと頑張ってくれ．．．。とりあえず実行してみる、駄目だったら諦めるか、テザリング、WiMAXとかで．．．。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">php</span> <span class="n">composer</span><span class="o">.</span><span class="n">phar</span> <span class="n">create</span><span class="o">-</span><span class="n">project</span> <span class="o">--</span><span class="n">prefer</span><span class="o">-</span><span class="n">dist</span> <span class="n">cakephp</span><span class="o">/</span><span class="n">app</span> <span class="n">my_app_name</span>
+</pre></div>
+</div>
+<p>うまくいくと、my_app_nameってディレクトリができてる。最後にpermisssionなんたらって聞かれるからyesしておくとあとで楽。</p>
+<p>Apacheで動かしたいから、DocumentRootに移動する。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mv</span> <span class="n">my_app_name</span><span class="o">/</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apache-mariadb">
+<h2>Apache MariaDBのインストール<a class="headerlink" href="#apache-mariadb" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下のコマンドでインストール。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">mariadb</span> <span class="n">mariadb</span><span class="o">-</span><span class="n">server</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">E</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">httpd</span>
+</pre></div>
+</div>
+<p>起動する。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">httpd</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">mariadb</span>
+</pre></div>
+</div>
+<p>MariaDBの初期設定をする。以下のコマンドを実行。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mysql_secure_installation</span>
+</pre></div>
+</div>
+<p>質問は以下のように答えておく。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>Enter current password for root (enter for none): Enter
+Set root password? [Y/n] Y
+New pasword: root
+Re-enter new password: root
+Remove anonymous users? [Y/n] y
+Disallow root login remotely? [Y/n] Y
+Remove test database and access to it? [Y/n] y
+Reload privilege tables now? [Y/n] y
+</pre></div>
+</div>
+<p>あとで使うユーザーとデータベースをつくる。</p>
+<p>以下のコマンドを実行。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="o">-</span><span class="n">p</span>
+<span class="n">Enter</span> <span class="n">password</span><span class="p">:</span> <span class="n">root</span>
+</pre></div>
+</div>
+<p>データベースに接続したら、:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MariaDB</span> <span class="p">[(</span><span class="n">none</span><span class="p">)]</span><span class="o">&gt;</span> <span class="n">create</span> <span class="n">database</span> <span class="n">cakephp</span><span class="p">;</span>
+<span class="n">MariaDB</span> <span class="p">[(</span><span class="n">none</span><span class="p">)]</span><span class="o">&gt;</span> <span class="n">grant</span> <span class="nb">all</span> <span class="n">on</span> <span class="n">cakephp</span><span class="o">.*</span> <span class="n">to</span> <span class="n">piyo</span><span class="nd">@localhost</span> <span class="n">identified</span> <span class="n">by</span> <span class="s1">&#39;hogehoge&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>ホストOS上のブラウザを使って、localhost:8888(ポートフォワーディングで設定したポート)にアクセスすると、ページを表示できるようにしたい。ただ、Firewallがあるからアクセスできない。次はFirewallの設定。</p>
+</div>
+<div class="section" id="firewall">
+<h2>Firewallの設定<a class="headerlink" href="#firewall" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Firewallでhttp,httpsをぶちあける。
+以下のコマンドを実行してみる。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="n">zones</span>
+</pre></div>
+</div>
+<p>次の結果が得られる。(人によって違うかもしれない):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">public</span>
+  <span class="n">interfaces</span><span class="p">:</span> <span class="n">enp0s3</span>
+</pre></div>
+</div>
+<p>ファイアウォールはzoneという概念で指定する。現在アクテイブになっているzoneは上記のコマンドでわかる。</p>
+<p>インストールした状態ではおそらくpublicになっている。</p>
+<p>このpublicというzoneに対してhttpとhttpsを通過するように設定する。</p>
+<p>現在通過を許可しているプロトコルを確認する。以下のコマンドを実行:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="nb">list</span><span class="o">-</span><span class="n">services</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">permanent</span>
+</pre></div>
+</div>
+<p>次のような結果が得られる。(人によって違うかもしれない):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">dhcpv6</span><span class="o">-</span><span class="n">client</span>
+</pre></div>
+</div>
+<p>sshとdhcpv6-clientというのが許可されている。これにhttpとhttpsを追加するには、:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">permanent</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">service</span><span class="o">=</span><span class="n">http</span>
+<span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">permanent</span> <span class="o">--</span><span class="n">zone</span><span class="o">=</span><span class="n">public</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">service</span><span class="o">=</span><span class="n">https</span>
+</pre></div>
+</div>
+<p>を実行。–permanentはシャットダウンしたりしても、永続させるための識別子。</p>
+<p>確認する。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span> <span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="n">zone</span>　<span class="o">--</span><span class="n">permanent</span>
+
+<span class="o">----------------------------</span>
+<span class="n">ssh</span> <span class="n">dhcpv6</span><span class="o">-</span><span class="n">client</span> <span class="n">http</span> <span class="n">https</span>
+<span class="o">----------------------------</span>
+</pre></div>
+</div>
+<p>正しく設定できている。</p>
+<p>Firewallをリスタートする。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">firewalld</span>
+</pre></div>
+</div>
+<p>ホストOSのブラウザでlocahost:8888(さっきポートフォワーディングで設定したポート)にアクセスすると下図のサイトが表示される。表示されれば成功。</p>
+<img alt="_images/httpd_test.PNG" src="_images/httpd_test.PNG" />
+</div>
+<div class="section" id="httpd-conf">
+<h2>httpd.confの書き換え<a class="headerlink" href="#httpd-conf" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>localhost:8888にアクセスしたときに、先程作ったプロジェクトが表示されるようにするのと、その他諸々のためにhttpd.confを書き換える。</p>
+<p>とりあえずvimが使いたいから:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">vim</span>
+</pre></div>
+</div>
+<p>でインストール。vimが使いたかっただけなので、好きなエディタを使ってください。</p>
+<p>では、:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">httpd</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">httpd</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>httpd.confを開く。</p>
+<p>95行目 ServerNameのコメントアウトを外す。(やらなくても大丈夫)</p>
+<p>102~105行目の&lt;Directory /&gt;を変更。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Directory</span> <span class="o">/&gt;</span>
+        <span class="n">Options</span> <span class="n">FollowSymLinks</span>
+        <span class="n">AllowOverride</span> <span class="n">All</span>
+<span class="o">&lt;/</span><span class="n">Directory</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>119行目付近:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DocumentRoot</span> <span class="s2">&quot;/var/www/html/my_app_name&quot;</span>
+</pre></div>
+</div>
+<p>131~157行目:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Directory</span> <span class="s2">&quot;var/www/html/my_app_name&quot;</span><span class="o">&gt;</span>
+        <span class="n">Options</span> <span class="n">Indexes</span> <span class="n">FollowSymLinks</span>
+        <span class="n">AllowOverride</span> <span class="n">All</span>
+        <span class="n">Require</span> <span class="nb">all</span> <span class="n">granted</span>
+<span class="o">&lt;/</span><span class="n">Directory</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selinux">
+<h2>SELinuxの設定<a class="headerlink" href="#selinux" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>最後にselinuxを切る。</p>
+<p>ホントはちゃんと設定したほうがいいけど、めんどくさいからね。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">setenforce</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>で一時的に切れる。</p>
+<p>これで、ホストOS上のブラウザからlocalhost:8888にアクセスすると、下図のようになる。</p>
+<img alt="_images/complete.PNG" src="_images/complete.PNG" />
+<p>再起動したりしてもselinuxを切れるようにしておく。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">selinux</span><span class="o">/</span><span class="n">config</span>
+</pre></div>
+</div>
+<p>でconfigファイルを開く。</p>
+<p>7行目:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SELINUX</span><span class="o">=</span><span class="n">disabled</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h1>参考<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><a class="reference external" href="https://qiita.com/ozawan/items/caf6e7ddec7c6b31f01e">https://qiita.com/ozawan/items/caf6e7ddec7c6b31f01e</a></p>
+<p><a class="reference external" href="https://qiita.com/iamdaisuke/items/adc561e057a69afebad8">httdps://qiita.com/iamdaisuke/items/adc561e057a69afebad8</a>
+<a class="reference external" href="https://www.mk-mode.com/octopress/2014/08/09/centos-7-0-setting-of-firewall/">https://www.mk-mode.com/octopress/2014/08/09/centos-7-0-setting-of-firewall/</a></p>
+<p><a class="reference external" href="https://qiita.com/haminiku/items/56fcb578d86abcd0b571">https://qiita.com/haminiku/items/56fcb578d86abcd0b571</a></p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="CentOSにCakePHPをインストールする茨の道へようこそ！！" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Masahiro.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
